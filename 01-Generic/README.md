@@ -58,7 +58,7 @@ assert ((ParameterizedType)t).getRawType().equals(Dao.class);
 assert (((ParameterizedType)t).getActualTypeArguments())[0].equals(Long.class);
 ```
 
-#### c. 方法中使用
+#### c. 类方法
 
 ```java
 public class MyDao extends Dao<String>{
