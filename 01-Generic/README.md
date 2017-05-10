@@ -7,10 +7,10 @@
 ```java
 // 定义泛型：类名上加上<T>
 public class Dao<T> {
-    // 内部直接定义的泛型
+    // 内部使用定义的泛型
     private T t;
 
-    // 内部直接定义的泛型
+    // 内部使用定义的泛型
     public void set(T t){
         this.t = t;
     }
@@ -155,3 +155,8 @@ public class Dao<T> {
 1. 首先需要获取Type。
 2. 转换为ParameterizedType等Type的子类。
 3. 得到泛型类型Class对象。
+
+当你需要对多个集合元素是有继承关系的集合进行统一处理时，若统一处理过程只是读取集合数据则可以考虑使用"? extend Class"，若需要频繁add则考虑"? super Class"。  
+如：  
+类结构关系：C extends B extends A
+需要对List<C>、List<B>、List<A>进行统一处理，

@@ -35,6 +35,7 @@ public class MyDao extends Dao<String>{
 		// add方法必须需要public才能获取到
 		Method m = MyDao.class.getMethod("add", Dao.class);
 		Type[] arrType = m.getGenericParameterTypes();
+		assert arrType[0] instanceof ParameterizedType;
 		assert ((ParameterizedType)arrType[0]).getRawType().equals(Dao.class);
 		assert (((ParameterizedType)arrType[0]).getActualTypeArguments())[0].equals(Integer.class);
 		
