@@ -158,5 +158,4 @@ public class Dao<T> {
 
 当你需要对多个集合元素是有继承关系的集合进行统一处理时，若统一处理过程只是读取集合数据则可以考虑使用"? extend Class"，若需要频繁add则考虑"? super Class"。  
 如：  
-类结构关系：C extends B extends A
-需要对List<C>、List<B>、List<A>进行统一处理，
+类结构关系：C extends B extends A，需要对"List<C>、List<B>、List<A>"进行统一处理.
