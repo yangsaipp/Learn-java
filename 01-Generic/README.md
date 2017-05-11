@@ -84,7 +84,7 @@ assert (((ParameterizedType)arrType[0]).getActualTypeArguments())[0].equals(Inte
 
 ## 2. Class与Type的关系
 
-![mark](http://ol28s5tk9.bkt.clouddn.com/mdimages/20170510/001154541.png)
+![mark](http://ol28s5tk9.bkt.clouddn.com/mdimages/20170511/215610381.png)
 
 ## 3. Type三种类型
 
