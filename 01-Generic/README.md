@@ -86,7 +86,7 @@ assert (((ParameterizedType)arrType[0]).getActualTypeArguments())[0].equals(Inte
 
 ![mark](http://ol28s5tk9.bkt.clouddn.com/mdimages/20170510/001154541.png)
 
-### 3. Type的三种实现的场景
+## 3. Type三种类型
 
 **ParameterizedType**
 
@@ -110,7 +110,12 @@ public void update(List<String> ids){}
 
 **WildcardType**
 
-格式特点：?, ? extends Number, or ? super Integer.
+泛型中带通配符"?"的都是WildcardType对象，如List<?>、List<? extends Number>、List<? super Number>，WildcardType一般是作为ParameterizedType的部分而存在。
+
+主要是用在集合对象中，如：List<? extends Number>
+
+1. 上限(? extends Class)：只能get不能add，get返回的对象为extends的Class类型。
+2. 下限(? super Class)：能get能add，get返回的对象为Object，add的对象只能是super的Class类型的子类。
 
 场景代码：
 ```java
@@ -121,7 +126,8 @@ public class MyDao extends Dao<? extends Number>{
 }
 
 // 场景二：类属性
-private List<? extends Number> list;
+private List<? extends Number> list = new ArrayList<Integer>();
+private List<? super Integer> list = new ArrayList<Number>();
 
 // 场景三：类方法
 public void update(List<? extends Number> ids){}
@@ -132,17 +138,31 @@ public void update(List<? extends Number> ids){}
 
 **TypeVariable**
 
+带有泛型变量如："E"、"T"、"K"、"V"等，就是TypeVariable。
+
+主要在定义带泛型的类的内部使用。
+
 场景代码：
 ```java
 
 // 场景一：定义类内部使用
 public class Dao<T> {
+	
+	// 代表new Dao<String>()里的String
 	private T t;
 	
 	public void set(T t){
 		this.t = t;
 	}
+	
 }
+
+// 场景二：方法上使用
+// 这种用法可以通过编译但是目前没发现具体使用场景
+public <E> void add(E e){....}
+// 等同于（若E extends Number则下面的Object替换为Number）
+public void add(Object e){....}
+
 ```
 
 ![mark](http://ol28s5tk9.bkt.clouddn.com/mdimages/20170510/220047138.png)
