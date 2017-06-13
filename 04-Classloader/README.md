@@ -30,27 +30,31 @@ Demo见main/main4.java。以下场景会报错ClassNotFound错误，
  6. 什么代码会触发类的加载？
  
  以ClassA为例，以下代码会触发：
- - 实例化对象
+    - 实例化对象
     ```java
-    new ClassA();
+        new ClassA();
     ```
- - 父类或者接口，当子类加载时会触发父类或接口加载
+    - 直接访问Class对象
     ```java
-     ClassB extends ClassA {
+        ClassA.class.getName();
+    ```
+    - 父类或者接口，当子类加载时会触发父类或接口加载
+    ```java
+         ClassB extends ClassA {
 
-     }
-     
-     ClassB implements ClassA {
+         }
+         
+         ClassB implements ClassA {
 
-     }
+         }
     ```
- - 静态方法调用
+    - 静态方法调用
     ```java
-    ClassA.getInstaces();
+        ClassA.getInstaces();
     ```
- - Class.forName("ClassA");
- - ClassLoader.loaderClass方法或者ClassLoader.defineClass方法
+    - Class.forName("ClassA");
+    - ClassLoader.loaderClass方法或者ClassLoader.defineClass方法
     ```java
-    ClassLoader.loaderClass("ClassA");
-    ClassLoader.defineClass("ClassA", codeByteArray, 0, codeByteArray.length);
+        ClassLoader.loaderClass("ClassA");
+        ClassLoader.defineClass("ClassA", codeByteArray, 0, codeByteArray.length);
     ```
