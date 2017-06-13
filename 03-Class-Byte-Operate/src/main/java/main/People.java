@@ -7,8 +7,9 @@ public class People {
 	}
 	
 	public void testDriver(){
-		String s = "杨";
-		System.out.println("Driver.");
+		int s = 1;
+		int t = 2;
+		//System.out.println("Driver.");
 	}
 	
 }

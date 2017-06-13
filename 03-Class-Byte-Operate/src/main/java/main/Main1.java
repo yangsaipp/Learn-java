@@ -1,5 +1,6 @@
 package main;
 
+import java.io.FileOutputStream;
 import java.lang.reflect.Method;
 
 import org.objectweb.asm.ClassReader;
@@ -38,6 +39,10 @@ public class Main1 {
 		System.out.println("===================");
 		System.out.println(utils.dumpBytecode(retVal));
 		System.out.println("===================");
+		
+		FileOutputStream fos = new FileOutputStream("E:/Data/Test.class");
+		//用FileOutputStream 的write方法写入字节数组
+		fos.write(retVal);
 		
 		// 加载修改后People
 		MyClassLoader classLoader = new MyClassLoader();

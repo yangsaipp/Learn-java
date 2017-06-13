@@ -1,5 +1,6 @@
 package asm;
 
+import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
@@ -29,9 +30,24 @@ public class AopMethodVisitor extends MethodVisitor implements Opcodes {
     @Override
     public void visitInsn(int opcode) {
     	System.out.println("====AopMethodVisitor.visitInsn(opcode): opcode=" + opcode);
-        if (opcode >= IRETURN && opcode <= RETURN)// ÔÚ·µ»ØÖ®Ç°°²²åafter ´úÂë¡£
+    	if(opcode == ICONST_1) {
+    		this.visitMethodInsn(INVOKESTATIC, "asm/AopInteceptor", "after", "()V", false);
+    	}
+        if (opcode >= IRETURN && opcode <= RETURN)// ï¿½Ú·ï¿½ï¿½ï¿½Ö®Ç°ï¿½ï¿½ï¿½ï¿½after ï¿½ï¿½ï¿½ë¡£
             this.visitMethodInsn(INVOKESTATIC, "asm/AopInteceptor", "after", "()V", false);
         super.visitInsn(opcode);
     }
+
+	/**
+	 * 
+	 * @see org.objectweb.asm.MethodVisitor#visitLineNumber(int, org.objectweb.asm.Label)
+	 */
+	@Override
+	public void visitLineNumber(int line, Label start) {
+		System.out.println(line + " : " + start);
+		super.visitLineNumber(line, start);
+	}
+    
+    
 
 }
