@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<order id="2">
+    <total_price>7498.0</total_price>
+    <category>3C-ys</category>
+    <shopping_list>
+        <shopping_item>
+            <name>Apple 6s Plus 64G</name>
+            <price>6499.0</price>
+            <num>1</num>
+        </shopping_item>
+        <shopping_item>
+            <name>魅蓝Note3 32G</name>
+            <price>999.0</price>
+            <num>1</num>
+        </shopping_item>
+    </shopping_list>
+    <tags>
+        <tag>3C</tag>
+        <tag>手机</tag>
+    </tags>
+    <addr>
+        <province>湖北省</province>
+        <city>武汉市</city>
+        <district>武昌区</district>
+        <street>复兴路</street>
+    </addr>
+</order>
