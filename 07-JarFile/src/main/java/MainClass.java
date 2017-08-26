@@ -15,8 +15,8 @@ public class MainClass {
 
   public static void main(String[] args) throws IOException {
 
-//    JarFile jf = new JarFile(new File("E:\\repository\\junit\\junit\\4.12\\junit-4.12.jar"));
-    JarFile jf = new JarFile(new File("E:\\Workspaces\\workspace_java\\spring-boot\\spring-boot-tools\\spring-boot-loader\\src\\test\\resources\\nested-jars\\app.jar"));
+//    JarFile jf = new JarFile(new File("E:\\Workspaces\\workspace_java\\Learn-java\\07-JarFile\\src\\main\\resources\\app.jar"));
+    JarFile jf = new JarFile(new File("E:\\Workspaces\\workspace_java\\Learn-java\\07-JarFile\\src\\main\\resources\\B02-ConfigRead.jar"));
     Enumeration e = jf.entries();
     while (e.hasMoreElements()) {
       JarEntry je = (JarEntry) e.nextElement();

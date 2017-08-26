@@ -3,6 +3,14 @@ import java.util.*;
 import java.util.zip.*;
 import java.util.jar.*;
 
+/**
+ * springboot可执行jar更新内嵌jar<br>
+ * 
+ * 参考：https://stackoverflow.com/questions/3110701/java-add-class-to-jar-archive-at-runtime
+ * 
+ * @author yangsai
+ *
+ */
 public class JarUpdate {
    /**
     * main()
@@ -10,9 +18,9 @@ public class JarUpdate {
    public static void main(String[] args) throws IOException {
       // Get the jar name and entry name from the command-line.
 
-      String jarName = "E:\\Workspaces\\workspace_java\\spring-boot\\spring-boot-tools\\spring-boot-loader\\src\\test\\resources\\nested-jars\\app.jar";
-      String fileName = "E:\\Workspaces\\workspace_java\\spring-boot\\spring-boot-tools\\spring-boot-loader\\src\\test\\resources\\nested-jars\\log4j-over-slf4j-1.7.22.jar";
-      String name = "log4j-over-slf4j-1.7.22.jar";
+      String jarName = "E:\\Workspaces\\workspace_java\\Learn-java\\07-JarFile\\src\\main\\resources\\B02-ConfigRead.jar";
+      String fileName = "E:\\Workspaces\\workspace_java\\Learn-java\\07-JarFile\\src\\main\\resources\\log4j-over-slf4j-1.7.22.jar";
+      String name = "BOOT-INF\\lib\\log4j-over-slf4j-1.7.22.jar";
 
       // Create file descriptors for the jar and a temp jar.
 
