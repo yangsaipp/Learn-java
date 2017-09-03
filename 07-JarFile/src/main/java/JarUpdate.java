@@ -101,12 +101,15 @@ public class JarUpdate {
                   InputStream entryStream = jar.getInputStream(entry);
 
                   // Read the entry and write it to the temp jar.
-
                   tempJar.putNextEntry(entry);
-
+                 
                   while ((bytesRead = entryStream.read(buffer)) != -1) {
                      tempJar.write(buffer, 0, bytesRead);
                   }
+//                  System.out.println("===Certificates:" + entry.getCertificates());
+//                  System.out.println("===CodeSigners:" + entry.getCodeSigners());
+                  
+                  
                }
             }
 
