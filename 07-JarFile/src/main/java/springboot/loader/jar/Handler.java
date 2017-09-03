@@ -23,11 +23,10 @@ public class Handler extends java.net.URLStreamHandler {
 			return new JarURLConnection(u, nestJarFile, jarEntryName); 
 		}
 		if(!nestJarFile.containsEntry(jarEntryName)) {
-			System.out.println("=========");
-			System.out.println(u);
-			System.out.println(jarEntryName);
 			throw new RuntimeException("xxx===xx");
 		}
+		System.out.println("=========");
+		System.out.println(u);
 		return new JarURLConnection(u, nestJarFile, jarEntryName);
 	}
 
