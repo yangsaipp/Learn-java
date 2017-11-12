@@ -15,4 +15,5 @@
 
 记录学习过程觉得比较重要文字片段。
 
+[zip格式规范](https://users.cs.jmu.edu/buchhofp/forensics/formats/pkzip.html)
 ## 
