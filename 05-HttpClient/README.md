@@ -8,4 +8,6 @@
 
 记录学习过程觉得比较重要文字片段。
 
+PoolingHttpClientConnectionManager.requestConnection
+
 ## 
