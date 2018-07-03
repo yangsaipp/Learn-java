@@ -41,10 +41,10 @@ dependencies {
     // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
     // 'test.useTestNG()' to your build script.
     testCompile 'junit:junit:4.12'
-	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
-	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
-	// https://mvnrepository.com/artifact/javax.persistence/persistence-api
-	compile group: 'javax.persistence', name: 'persistence-api', version: '1.0'
 	
+	// compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+	// MySql的JDBC连接的url中要加rewriteBatchedStatements参数，并保证5.1.13以上版本的驱动，才能实现高性能的批量插入
+	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.13'
+	compile group: 'javax.persistence', name: 'persistence-api', version: '1.0'
 }
 
