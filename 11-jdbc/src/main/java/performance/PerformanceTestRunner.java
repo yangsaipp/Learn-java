@@ -18,16 +18,33 @@ import java.util.List;
  */
 public class PerformanceTestRunner {
 
+	private List<PerformanceTestObject> lstPerformanceTestObject;
+	
+	private Method reset;
+	
+	private Object o;
+	
+	public PerformanceTestRunner(
+			List<PerformanceTestObject> lstPerformanceTestObject, Method reset,
+			Object o) {
+		super();
+		this.lstPerformanceTestObject = lstPerformanceTestObject;
+		this.reset = reset;
+		this.o = o;
+	}
+
 	public static void main(String[] args) {
 		run(new TestObject(), 3);
 	}
 	
 	public static void run(Object o, int num)  {
-		List<PerformanceTestObject> lstPerformanceTestObject = createPerformanceTestObjectList(o);
+		PerformanceTestRunner runner = createRunner(o);
+		runner.resetTest();
 		long startTime;
-		for(PerformanceTestObject testObj : lstPerformanceTestObject) {
+		for(PerformanceTestObject testObj : runner.lstPerformanceTestObject) {
 			System.out.println();
-			System.out.println(testObj.getMethod());
+			System.out.println("测试名：" + testObj.getTest().name());
+			System.out.println("测试方法：" + testObj.getMethod());
 			StringBuilder sb = new StringBuilder();
 			long totalTime = 0;
 			for(int i=0; i< num; i++) {
@@ -41,9 +58,22 @@ public class PerformanceTestRunner {
 				sb.append(time);
 				sb.append(" | ");
 				totalTime  = totalTime + time;
+				runner.resetTest();
 			}
 			sb.append(String.format("平均时间：%d", totalTime / num));
 			System.out.println(sb);
+		}
+	}
+
+	private void resetTest()
+			 {
+		if(reset != null) {
+			try {
+				reset.invoke(o);
+			}catch (Exception e) {
+				throw new RuntimeException(String.format("重置测试环境出错。方法：%s", reset), e);
+			}
+			
 		}
 	}
 
@@ -51,14 +81,19 @@ public class PerformanceTestRunner {
 	 * @param o
 	 * @return
 	 */
-	private static List<PerformanceTestObject> createPerformanceTestObjectList(Object o) {
+	private static PerformanceTestRunner createRunner(Object o) {
 		List<PerformanceTestObject> lstPerformanceTestObject = new ArrayList<PerformanceTestObject>();
+		Method reset = null;
 		for(Method m : o.getClass().getMethods()) {
 			PerformanceTest anTest = m.getAnnotation(PerformanceTest.class);
 			if(anTest != null) {
-				lstPerformanceTestObject.add(new PerformanceTestObject(m, o));
+				lstPerformanceTestObject.add(new PerformanceTestObject(m, o, anTest));
+			}
+			TestReset anRest = m.getAnnotation(TestReset.class);
+			if(anRest != null) {
+				reset = m;
 			}
 		}
-		return lstPerformanceTestObject;
+		return new PerformanceTestRunner(lstPerformanceTestObject, reset, o);
 	}
 }

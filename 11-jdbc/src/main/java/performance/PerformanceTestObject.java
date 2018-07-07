@@ -20,14 +20,17 @@ public class PerformanceTestObject {
 	
 	private Object o;
 	
+	private PerformanceTest test;
+	
 	/**
 	 * 构造函数
 	 * @param method
 	 * @param o
 	 */
-	public PerformanceTestObject(Method method, Object o) {
+	public PerformanceTestObject(Method method, Object o, PerformanceTest test) {
 		this.method = method;
 		this.o = o;
+		this.test = test;
 	}
 
 	public void run() throws Exception {
@@ -51,4 +54,13 @@ public class PerformanceTestObject {
 	public void setMethod(Method method) {
 		this.method = method;
 	}
+
+	public PerformanceTest getTest() {
+		return test;
+	}
+
+	public void setTest(PerformanceTest test) {
+		this.test = test;
+	}
+
 }

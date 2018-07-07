@@ -7,25 +7,18 @@
 
 package performance;
 
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 /**
  * @author  杨赛
  * @since   jdk1.7
  * @version 2018年7月5日 杨赛
  */
-public class TestObject {
-	
-	@PerformanceTest(name = "")
-	public void test() throws InterruptedException {
-		Thread.sleep(200);
-	}
-	
-	@PerformanceTest(name = "")
-	public void test2() throws InterruptedException {
-		Thread.sleep(300);
-	}
-	
-	@TestReset
-	public void reset() throws InterruptedException {
-		System.out.println("reset");
-	}
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface TestReset {
+	String name() default "";
 }
