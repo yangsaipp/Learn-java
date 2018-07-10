@@ -7,24 +7,26 @@
 
 package mybatis.internal.plugin;
 
-import mybatis.custom.plugin.LogPlugin;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 /**
+ * 插件对象，通过动态代理模式，对需要处理的方法进行控制。
+ * 
  * @author  杨赛
  * @since   jdk1.7
  * @version 2018年7月10日 杨赛
  */
-public class Plugin {
+public abstract class Plugin implements InvocationHandler {
 
-	/**
-	 * 在对应的对象上增加对应插件逻辑 
-	 * @param executor
-	 * @return
-	 */
-	public static Object wrap(Object obj) {
-		Object wrapObj = LogPlugin.wrap(obj);
-//		Object wrapObj = otherPlugin.wrap(wrapObj);
-		return wrapObj;
+	 //　这个就是我们要代理控制的真实对象
+	protected Object target;
+	
+	
+	public Plugin(Object target) {
+		super();
+		this.target = target;
 	}
 
 }

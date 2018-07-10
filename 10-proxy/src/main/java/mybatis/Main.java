@@ -7,12 +7,11 @@
 
 package mybatis;
 
-import org.junit.Test;
-
-import mybatis.custom.plugin.LogPlugin;
 import mybatis.internal.DefaultExecutor;
 import mybatis.internal.Executor;
-import mybatis.internal.plugin.Plugin;
+import mybatis.internal.plugin.PluginHelper;
+
+import org.junit.Test;
 
 /**
  * @author  杨赛
@@ -22,27 +21,31 @@ import mybatis.internal.plugin.Plugin;
 public class Main {
 
 	/**
-	 * 使用代理模式来实现插件，首先需要解决在mybaties源码里动态调用外部代码来生成Executor的代理对象。
+	 * 使用代理模式来实现插件，问题：插件实现会拦截所有方法。
 	 */
 	@Test
 	public void test1() {
 		Executor executor = new DefaultExecutor();
-		// 这段代码需要动态的执行。
-		executor = (Executor) LogPlugin.wrap(executor);
+		// 增加插件功能。
+		executor = (Executor) PluginHelper.wrap(executor);
 		executor.query(null, null);
+		System.out.println();
 		System.out.println(executor.update(null, null));
 	}
 
 	/**
-	 * 使用代理模式来实现插件，首先需要解决在mybaties源码里动态调用外部代码来生成Executor的代理对象。
+	 * 使用代理模式来实现插件，
 	 */
 	@Test
 	public void test2() {
 		Executor executor = new DefaultExecutor();
-		// 这段代码需要动态的执行。
-		executor = (Executor) Plugin.wrap(executor);
+		// 增加插件功能。
+		executor = (Executor) mybatis.internal.plugin2.PluginHelper.wrap(executor);
 		executor.query(null, null);
+		System.out.println();
 		System.out.println(executor.update(null, null));
 	}
+	
+	
 	
 }

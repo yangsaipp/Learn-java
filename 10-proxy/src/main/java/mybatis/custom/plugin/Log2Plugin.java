@@ -16,10 +16,10 @@ import mybatis.internal.plugin.Plugin;
  * @since   jdk1.7
  * @version 2018年7月10日 杨赛
  */
-public class LogPlugin extends Plugin {
+public class Log2Plugin extends Plugin {
 	
 
-	public LogPlugin(Object target) {
+	public Log2Plugin(Object target) {
 		super(target);
 	}
 
@@ -29,9 +29,9 @@ public class LogPlugin extends Plugin {
 	 */
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-		System.out.println("log before invoke....");
+		System.out.println("log2 before invoke....");
         Object result = method.invoke(target, args);
-        System.out.println("log after invoke....");
+        System.out.println("log2 after invoke....");
 		return result ;
 	}
 
