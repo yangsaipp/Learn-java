@@ -3,6 +3,12 @@ package proxy.dynamic;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 
+/**
+ * 该类会拦截被代理类所有指定的方法。
+ * @author  杨赛
+ * @since   jdk1.7
+ * @version 2018年7月10日 杨赛
+ */
 public class DynamicProxy implements InvocationHandler
 {
     //　这个就是我们要代理的真实对象
