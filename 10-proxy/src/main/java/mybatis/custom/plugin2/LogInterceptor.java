@@ -5,7 +5,7 @@
 * 复制、修改或发布本软件.
 *****************************************************************************/
 
-package mybatis.custom.plugin;
+package mybatis.custom.plugin2;
 
 import mybatis.internal.Executor;
 import mybatis.internal.plugin2.Interceptor;
@@ -19,14 +19,14 @@ import mybatis.internal.plugin2.annotation.Signature;
  * @version 2018年7月10日 杨赛
  */
 @Intercepts({ @Signature(type = Executor.class, method = "query", args = { String.class, Object.class}) })
-public class Log2Interceptor implements Interceptor {
+public class LogInterceptor implements Interceptor {
 
 	@Override
 	public Object intercept(Invocation invocation) {
 		try {
-			System.out.println("log2 before invoke....");
+			System.out.println("log before invoke....");
 	        Object result = invocation.proceed();
-	        System.out.println("log2 after invoke....");
+	        System.out.println("log after invoke....");
 			return result ;
 		} catch (Exception e) {
 			e.printStackTrace();

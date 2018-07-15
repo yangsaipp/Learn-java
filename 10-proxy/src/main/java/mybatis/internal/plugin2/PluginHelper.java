@@ -7,12 +7,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import mybatis.custom.plugin.Log2Interceptor;
-import mybatis.custom.plugin.LogInterceptor;
+import org.apache.ibatis.plugin.PluginException;
+
+import mybatis.custom.plugin2.Log2Interceptor;
+import mybatis.custom.plugin2.LogInterceptor;
 import mybatis.internal.plugin2.annotation.Intercepts;
 import mybatis.internal.plugin2.annotation.Signature;
-
-import org.apache.ibatis.plugin.PluginException;
 
 public class PluginHelper {
 	

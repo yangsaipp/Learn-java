@@ -8,8 +8,6 @@
 package mybatis.internal.plugin;
 
 import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 
 /**
  * 插件对象，通过动态代理模式，对需要处理的方法进行控制。
@@ -28,5 +26,4 @@ public abstract class Plugin implements InvocationHandler {
 		super();
 		this.target = target;
 	}
-
 }
