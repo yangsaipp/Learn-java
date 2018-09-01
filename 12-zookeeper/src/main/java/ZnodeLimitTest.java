@@ -34,6 +34,28 @@ public class ZnodeLimitTest {
 		System.out.println("插入成功");
 	}
 	
+	@Test
+	public void testC() {
+		// 需要增加默认连接、会话时间
+		int sessionTimeoutMs = 120 * 1000;
+		int connectionTimeoutMs = 120 * 1000;
+		CuratorUtils.initZookeeperclient("10.10.31.107:2181", sessionTimeoutMs, connectionTimeoutMs);
+		CuratorUtils.createNode("/JYTenantConfigt3/test16", "ss");
+//		CuratorUtils.createNode("/JYTenantConfigt3/test14", "1");
+		System.out.println("插入成功");
+	}
+	
+	@Test
+	public void testSessionTimeout() {
+		// 需要增加默认连接、会话时间
+		int sessionTimeoutMs = 1 * 1000 + 1;
+		int connectionTimeoutMs = 120 * 1000;
+		CuratorUtils.initZookeeperclient("192.168.1.152:2181", sessionTimeoutMs, connectionTimeoutMs);
+		CuratorUtils.createNode("/JYTenantConfigt3/test16", "ss");
+//		CuratorUtils.createNode("/JYTenantConfigt3/test14", "1");
+		System.out.println("插入成功");
+	}
+	
 	public static void main(String[] args) throws Exception {
 //		CuratorUtils.getZookeeperclient();
 //		CuratorUtils.createNode("/JYTenantConfigt3/test12", readToString(ZnodeLimitTest.class.getClassLoader().getResource("test-1.txt").getPath()));

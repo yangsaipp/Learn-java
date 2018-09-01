@@ -23,11 +23,11 @@ import performance.TestReset;
 public class JDBCBatchPerformanceTest {
 
 	String driver = "com.mysql.jdbc.Driver";
-	String url = "jdbc:mysql://192.168.1.103:3306/memo";
+	String url = "jdbc:mysql://192.168.1.102:3306/memo";
 	String username = "root";
 	String password = "jadp_develop";
 	
-	int size = 1000000;
+	int size = 10;
 
 	public static void main(String[] args) {
 		PerformanceTestRunner.run(new JDBCBatchPerformanceTest(), 10);
@@ -69,7 +69,7 @@ public class JDBCBatchPerformanceTest {
 		}catch (Exception e){
 			e.printStackTrace();
 		} finally {
-			close(conn, pst);
+//			close(conn, pst);
 		}
 		
 		System.out.println("耗时：" + (System.currentTimeMillis() - startTime));
