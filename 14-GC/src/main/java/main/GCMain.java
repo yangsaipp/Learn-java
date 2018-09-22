@@ -2,6 +2,9 @@ package main;
 
 import java.lang.management.GarbageCollectorMXBean;
 import java.lang.management.ManagementFactory;
+import java.lang.ref.Reference;
+import java.lang.ref.ReferenceQueue;
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,7 +18,22 @@ public class GCMain {
 	
 	public static void main(String args[]) throws InterruptedException {
 		printGC();
+		final ReferenceQueue<Book> referenceQueue = testSofeRef();
 		
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				
+				try {
+					Reference<Book> reference = (Reference<Book>) referenceQueue.remove();
+					System.out.println("reference不为空；" + reference.get());
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}).start();
 		testOldGenFullGC();
 //		testOldGenGC();
 //		Thread.sleep(Integer.MAX_VALUE);
@@ -23,6 +41,8 @@ public class GCMain {
 
 	private static void testOldGenFullGC() throws InterruptedException {
 		int i = 0;
+		System.gc();
+		System.out.println("GC...");
 		while (true) {
 			String str = new String(i + "");
 			Thread.sleep(1);
@@ -39,5 +59,15 @@ public class GCMain {
 		for (GarbageCollectorMXBean b : l) {
 			System.out.println(b.getName());
 		}
+	}
+	
+	private static ReferenceQueue<Book> testSofeRef() {
+		final ReferenceQueue<Book> referenceQueue = new ReferenceQueue<Book>();
+		WeakReference<Book> softReference = new WeakReference<>(new Book("深入理解虚拟机"), referenceQueue);
+		Book book = softReference.get();
+		System.out.println(book);
+		
+		return referenceQueue;
+		
 	}
 }
