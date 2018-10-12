@@ -39,7 +39,7 @@ public class ZnodeLimitTest {
 		// 需要增加默认连接、会话时间
 		int sessionTimeoutMs = 120 * 1000;
 		int connectionTimeoutMs = 120 * 1000;
-		CuratorUtils.initZookeeperclient("10.10.31.107:2181", sessionTimeoutMs, connectionTimeoutMs);
+		CuratorUtils.initZookeeperclient("10.10.32.188:2181,10.10.32.130:2181,10.10.31.103:2181", sessionTimeoutMs, connectionTimeoutMs);
 		CuratorUtils.createNode("/JYTenantConfigt3/test16", "ss");
 //		CuratorUtils.createNode("/JYTenantConfigt3/test14", "1");
 		System.out.println("插入成功");
