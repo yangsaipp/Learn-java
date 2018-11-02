@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CacheConfigs>
+	<CacheConfig id="default">
+		<cacheMethod>redis</cacheMethod>
+		<cacheIP>node1:10.10.31.103:6379</cacheIP>
+		<poolConfigMaxActive>10000</poolConfigMaxActive>
+		<poolConfigMaxIdle>5000</poolConfigMaxIdle>
+		<poolConfigMaxWait>120000</poolConfigMaxWait>
+		<jedisPoolTimeOut>120000</jedisPoolTimeOut>
+	</CacheConfig>	
+</CacheConfigs>

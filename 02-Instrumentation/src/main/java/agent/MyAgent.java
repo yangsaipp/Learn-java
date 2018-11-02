@@ -2,12 +2,15 @@ package agent;
 
 import java.lang.instrument.Instrumentation;
 
+import com.comtop.encrypt.ClassEncryptLib;
+
 
 public class MyAgent {
 	
-	// 定义premain方法该方法在main方法之前执行
 	public static void premain(String agentArgs, Instrumentation ins) {
 		System.out.printf("MyAgent.premain();agentArgs:%s \n", agentArgs);
+		ClassEncryptLib.loadNativeLibrary();
 		ins.addTransformer(new MyTransformer());
+		
 	}
 }

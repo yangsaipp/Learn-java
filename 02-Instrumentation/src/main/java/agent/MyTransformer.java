@@ -4,29 +4,23 @@ import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
 
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.Opcodes;
-
-import asm.AopClassAdapter;
+import com.comtop.encrypt.ClassEncryptLib;
 
 public class MyTransformer implements ClassFileTransformer {
 
-	// Àà¼ÓÔØÊ±µ÷ÓÃ£¬¿É½«Àà×Ö½ÚÂëĞŞ¸Äºó·µ»Ø¸øJVMÊ¹ÓÃ£¬null±íÊ¾²»ĞŞ¸ÄÊ¹ÓÃÔ­±¾µÄ×Ö½ÚÂë¡£
+	// ç±»åŠ è½½æ—¶è°ƒç”¨ï¼Œå¯å°†ç±»å­—èŠ‚ç ä¿®æ”¹åè¿”å›ç»™JVMä½¿ç”¨ï¼Œnullè¡¨ç¤ºä¸ä¿®æ”¹ä½¿ç”¨åŸæœ¬çš„å­—èŠ‚ç ã€‚
 	@Override
 	public byte[] transform(ClassLoader loader, String className,
 			Class<?> classBeingRedefined, ProtectionDomain protectionDomain,
 			byte[] classfileBuffer) throws IllegalClassFormatException {
 
-		if (className.equals("main/People")) {
-			System.out.printf("MyTransformer.transform(): %s \n", className);
-			byte[] retVal = null;
-			ClassReader cr = new ClassReader(classfileBuffer);
-			ClassWriter cw = new ClassWriter(ClassWriter.COMPUTE_FRAMES);
-			cr.accept(new AopClassAdapter(Opcodes.ASM5, cw),
-					ClassReader.SKIP_DEBUG);
-			retVal = cw.toByteArray();
-			return retVal;
+		if (className.startsWith("com/comtop")) {
+			System.out.printf("è§£å¯†ç±»: %s \n", className);
+			return ClassEncryptLib.decrypt(classfileBuffer);
+		}
+		
+		if (className.startsWith("main")) {
+			System.out.printf("transform.transform(): %s \n", className);
 		}
 
 		return null;

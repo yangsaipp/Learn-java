@@ -18,6 +18,21 @@ repositories {
 	maven{url "http://maven.aliyun.com/nexus/content/groups/public"}
 }
 
+sourceCompatibility = 1.7
+version = '1.0'
+
+jar {
+	manifest {
+		attributes 'Implementation-Title': 'Gradle Quickstart',
+				   'Implementation-Version': version,
+				   'Premain-Class': 'agent.MyAgent',
+				   'Can-Redefine-Classes': 'true',
+				   'Main-Class': 'main.Main2'
+	}
+}
+
+tasks.withType(JavaCompile) { options.encoding = "UTF-8" }
+
 // In this section you declare the dependencies for your production and test code
 dependencies {
     // The production code uses the SLF4J logging API at compile time
