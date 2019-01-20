@@ -5,7 +5,20 @@
  * For more details take a look at the Java Quickstart chapter in the Gradle
  * user guide available at https://docs.gradle.org/3.4/userguide/tutorial_java_projects.html
  */
+buildscript {
+	repositories {
+		maven{url "http://maven.aliyun.com/nexus/content/groups/public"}
+	}
+}
 
+plugins {
+	id 'org.springframework.boot' version '1.5.1.RELEASE'
+}
+// 配置springBoot插件
+springBoot {
+	// 指定SpringBoot启动类
+	// mainClass = 'com.comtop.DartApplication'
+}
 
 apply plugin: 'java'
 // 生成工程依赖、任务、属性报告插件，相关任务：
@@ -41,6 +54,10 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.14'
     compile 'ch.qos.logback:logback-core:1.1.3'
     compile 'ch.qos.logback:logback-classic:1.1.3'
+	
+    compile 'org.apache.commons:commons-lang3:3.6'
+	compile('org.springframework.boot:spring-boot-starter')
+	compile("org.springframework.boot:spring-boot-starter-web")
 	
 	
 	
