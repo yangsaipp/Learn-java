@@ -13,7 +13,7 @@ public class VolatileTest extends Thread {
         	while (!flag.flag) {
                 i++;
             }
-    	
+        	System.out.println("结束现场...");
     }
     public static void main(String[] args) throws Exception {
         VolatileTest vt = new VolatileTest();

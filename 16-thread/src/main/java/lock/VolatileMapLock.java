@@ -4,7 +4,6 @@ package lock;
  * 测试使用volatile的内存可见性
  * 结论：使用volatile来修饰变量比如下面例子中count++的情况下会出现线程安全问题，
  * 因为i++不是原子操作无法保证原子性，两个线程同时拿到最新值，同时进行+1,并写回主存。
- * 试用场景：读及时性要求高，
  * @author yangsai
  */
 public class VolatileMapLock {
