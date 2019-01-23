@@ -1,4 +1,4 @@
-package lock;
+package volatile_Test;
 
 /**
  * 测试使用volatile的内存可见性

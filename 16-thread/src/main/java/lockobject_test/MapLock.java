@@ -1,4 +1,4 @@
-package lock;
+package lockobject_test;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -42,6 +42,7 @@ public class MapLock {
 	}
 	
 	static Map<String, MyLock> mapLock = new ConcurrentHashMap<>();
+	
 	public static void main(String[] args) {
 		/**
 		 * 若能保证同步，则只有一次put记录。结果是多次put记录

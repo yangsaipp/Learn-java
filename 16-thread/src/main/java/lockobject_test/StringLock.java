@@ -1,4 +1,4 @@
-package lock;
+package lockobject_test;
 
 import java.util.Date;
 
