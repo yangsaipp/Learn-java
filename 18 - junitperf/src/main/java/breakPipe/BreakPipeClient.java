@@ -12,7 +12,7 @@ public class BreakPipeClient {
 	public static void main(String[] args) {
 	        try {
 	            Socket s = new Socket();
-	            s.setSoLinger(true,0);//设置调用close就发送RST
+	            //s.setSoLinger(true,0);//设置调用close就发送RST
 	            s.connect(new InetSocketAddress("127.0.0.1",3113));
 	            OutputStream os = s.getOutputStream();
 	            os.write("hello".getBytes());

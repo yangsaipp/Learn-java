@@ -19,7 +19,7 @@ public class BreakPipeServer {
 	            System.out.println("recv:"+new String(buf,0,len));
 	            Thread.sleep(10000);
 	            s.getOutputStream().write("hello".getBytes());
-//	            s.getOutputStream().write("hello2".getBytes());
+	            s.getOutputStream().write("hello2".getBytes());
 	            System.out.println("send over");
 	            System.in.read();
 	        }catch (Exception e){
