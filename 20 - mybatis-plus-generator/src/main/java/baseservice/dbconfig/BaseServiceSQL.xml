@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.comtop.tcm.tenantPlatform.bpmp.baseservice.model">
+	
+	<generateOperate class="com.comtop.tcm.tenantPlatform.bpmp.baseservice.model.BaseServiceInfoVO" filter="insert,update,read,delete"></generateOperate>
+
+	<select id="queryBaseServiceList" parameterType="java.util.List"
+		resultType="com.comtop.tcm.tenantPlatform.bpmp.baseservice.model.BaseServiceInfoVO">
+		SELECT *
+		FROM BPMP_BASE_SERVICE
+		WHERE BASE_SERVICE_ID in
+		<foreach collection="list" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</select>
+
+	<delete id="deleteBaseServiceInfo" parameterType="java.util.List">
+		DELETE FROM BPMP_BASE_SERVICE TU WHERE BASE_SERVICE_ID IN
+		<foreach collection="list" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+</mapper>

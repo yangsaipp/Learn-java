@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.miaoying.generator.modulardb.personal.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.miaoying.generator.modulardb.personal.entity.User">
+        <id column="user_id" property="userId" />
+        <result column="org_id" property="orgId" />
+        <result column="employee_id" property="employeeId" />
+        <result column="state" property="state" />
+        <result column="user_type" property="userType" />
+        <result column="creator_id" property="creatorId" />
+        <result column="create_time" property="createTime" />
+        <result column="modifier_id" property="modifierId" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        user_id, org_id, employee_id, state, user_type, creator_id, create_time, modifier_id, update_time
+    </sql>
+
+</mapper>
