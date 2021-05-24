@@ -13,6 +13,35 @@
 			#{id}
 		</foreach>
 	</select>
+	
+	<select id="queryBaseServiceListCount" parameterType="com.comtop.tcm.tenantPlatform.bpmp.baseservice.model.BaseServiceInfoDTO"
+		resultType="int">
+		SELECT 
+		count(1)
+		WHERE 1=1
+		<if test="baseServiceId !=null and baseServiceId !=''">
+		     and TU.BASE_SERVICE_ID = #{baseServiceId}
+		 </if>
+		 <if test="baseServiceName !=null and baseServiceName !=''">
+		     and TU.BASE_SERVICE_Name = #{baseServiceName}
+		 </if>
+	</select>
+	
+	
+	<select id="queryBaseServiceListByPage" parameterType="com.comtop.tcm.tenantPlatform.bpmp.baseservice.model.BaseServiceInfoDTO"
+		resultType="com.comtop.tcm.tenantPlatform.bpmp.baseservice.model.BaseServiceInfoDTO">
+		SELECT 
+		BASE_SERVICE_ID as baseServiceId,
+		BASE_SERVICE_Name as baseServiceName
+		FROM BPMP_BASE_SERVICE
+		WHERE 1=1
+		<if test="baseServiceId !=null and baseServiceId !=''">
+		     and TU.BASE_SERVICE_ID = #{baseServiceId}
+		 </if>
+		 <if test="baseServiceName !=null and baseServiceName !=''">
+		     and TU.BASE_SERVICE_Name = #{baseServiceName}
+		 </if>
+	</select>
 
 	<delete id="deleteBaseServiceInfo" parameterType="java.util.List">
 		DELETE FROM BPMP_BASE_SERVICE TU WHERE BASE_SERVICE_ID IN

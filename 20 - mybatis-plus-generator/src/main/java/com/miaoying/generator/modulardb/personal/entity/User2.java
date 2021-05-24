@@ -1,84 +1,69 @@
 package com.miaoying.generator.modulardb.personal.entity;
 
-import javax.persistence.*;
-import java.util.*;
-import com.comtop.bizp.dart.framework.orm.model.CoreVO;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.IdType;
+import java.util.Date;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.*;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * @auther CodeGenerator
- * @create 2021-05-23 10:54:26
+ * @create 2021-05-22 23:55:31
  * @describe 人员和组织的关联对象表实体类
  */
- 
-@Entity
-@Table(name = "top_user")
-public class UserVO extends CoreVO {
+@TableName("top_user")
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@ApiModel(value="User对象", description="人员和组织的关联对象表")
+public class User2 implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 用户ID
-     */
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @ApiModelProperty(value = "用户ID")
+    @TableId(value = "user_id", type = IdType.UUID)
     private String userId;
 
-    /**
-     * 组织ID
-     */
-    @Column(name = "org_id")
+    @ApiModelProperty(value = "组织ID")
+    @TableField("org_id")
     private String orgId;
 
-    /**
-     * 人员ID
-     */
-    @Column(name = "employee_id")
+    @ApiModelProperty(value = "人员ID")
+    @TableField("employee_id")
     private String employeeId;
 
-    /**
-     * 状态。1任职，2免职
-     */
-    @Column(name = "state")
+    @ApiModelProperty(value = "状态。1任职，2免职")
+    @TableField("state")
     private Integer state;
 
-    /**
-     * 用户的类型,0-本单位用户;1-外协单位用户(最小系统使用)
-     */
-    @Column(name = "user_type")
+    @ApiModelProperty(value = "用户的类型,0-本单位用户;1-外协单位用户(最小系统使用)")
+    @TableField("user_type")
     private Integer userType;
 
-    /**
-     * 创建人ID
-     */
-    @Column(name = "creator_id")
+    @ApiModelProperty(value = "创建人ID")
+    @TableField("creator_id")
     private String creatorId;
 
-    /**
-     * 创建时间
-     */
-    @Column(name = "create_time")
+    @ApiModelProperty(value = "创建时间")
+    @TableField("create_time")
     private Date createTime;
 
-    /**
-     * 更新者ID
-     */
-    @Column(name = "modifier_id")
+    @ApiModelProperty(value = "更新者ID")
+    @TableField("modifier_id")
     private String modifierId;
 
-    /**
-     * 记录更新时间
-     */
-    @Column(name = "update_time")
+    @ApiModelProperty(value = "记录更新时间")
+    @TableField("update_time")
     private Date updateTime;
-
 
 
     public String getUserId() {
         return userId;
     }
 
-    public User setUserId(String userId) {
+    public User2 setUserId(String userId) {
         this.userId = userId;
         return this;
     }
@@ -87,7 +72,7 @@ public class UserVO extends CoreVO {
         return orgId;
     }
 
-    public User setOrgId(String orgId) {
+    public User2 setOrgId(String orgId) {
         this.orgId = orgId;
         return this;
     }
@@ -96,7 +81,7 @@ public class UserVO extends CoreVO {
         return employeeId;
     }
 
-    public User setEmployeeId(String employeeId) {
+    public User2 setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
         return this;
     }
@@ -105,7 +90,7 @@ public class UserVO extends CoreVO {
         return state;
     }
 
-    public User setState(Integer state) {
+    public User2 setState(Integer state) {
         this.state = state;
         return this;
     }
@@ -114,7 +99,7 @@ public class UserVO extends CoreVO {
         return userType;
     }
 
-    public User setUserType(Integer userType) {
+    public User2 setUserType(Integer userType) {
         this.userType = userType;
         return this;
     }
@@ -123,7 +108,7 @@ public class UserVO extends CoreVO {
         return creatorId;
     }
 
-    public User setCreatorId(String creatorId) {
+    public User2 setCreatorId(String creatorId) {
         this.creatorId = creatorId;
         return this;
     }
@@ -132,7 +117,7 @@ public class UserVO extends CoreVO {
         return createTime;
     }
 
-    public User setCreateTime(Date createTime) {
+    public User2 setCreateTime(Date createTime) {
         this.createTime = createTime;
         return this;
     }
@@ -141,7 +126,7 @@ public class UserVO extends CoreVO {
         return modifierId;
     }
 
-    public User setModifierId(String modifierId) {
+    public User2 setModifierId(String modifierId) {
         this.modifierId = modifierId;
         return this;
     }
@@ -150,11 +135,10 @@ public class UserVO extends CoreVO {
         return updateTime;
     }
 
-    public User setUpdateTime(Date updateTime) {
+    public User2 setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
         return this;
     }
-
 
     @Override
     public String toString() {

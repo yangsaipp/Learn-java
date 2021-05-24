@@ -1,20 +1,19 @@
 
 
+import java.util.Scanner;
+
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.InjectionConfig;
-import com.baomidou.mybatisplus.generator.config.*;
-import com.baomidou.mybatisplus.generator.config.po.TableInfo;
+import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
+import com.baomidou.mybatisplus.generator.config.GlobalConfig;
+import com.baomidou.mybatisplus.generator.config.PackageConfig;
+import com.baomidou.mybatisplus.generator.config.StrategyConfig;
+import com.baomidou.mybatisplus.generator.config.TemplateConfig;
 import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.sun.javafx.PlatformUtil;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
 
 public class CodeGenerator {
     /**
@@ -62,43 +61,18 @@ public class CodeGenerator {
     }
 
     public static void autoGenerator(String moduleName, String tableName, String tablePrefix) {
-        new AutoGenerator()
+        new MyAutoGenerator()
                 .setGlobalConfig(getGlobalConfig())
                 .setDataSource(getDataSourceConfig())
                 .setPackageInfo(getPackageConfig(moduleName))
                 .setStrategy(getStrategyConfig(tableName, tablePrefix))
-                .setCfg(getInjectionConfig(moduleName))
+                .setCfg(getInjectionConfig(getPackageConfig(moduleName)))
                 .setTemplate(getTemplateConfig())
                 .execute();
     }
 
-    private static String getDateTime() {
-        LocalDateTime localDate = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return localDate.format(formatter);
-    }
-
-    private static InjectionConfig getInjectionConfig(final String moduleName) {
-        return new InjectionConfig() {
-            @Override
-            public void initMap() {
-                Map map = new HashMap();
-                map.put("dateTime", getDateTime());
-                setMap(map);
-                final String projectPath = System.getProperty("user.dir");
-                List<FileOutConfig> fileOutConfigList = new ArrayList<FileOutConfig>();
-                // 自定义配置会被优先输出
-                fileOutConfigList.add(new FileOutConfig("/templates/mapper.xml.vm") {
-                    @Override
-                    public String outputFile(TableInfo tableInfo) {
-                        // 自定义输出文件名，如果entity设置了前后缀，此次注意xml的名称也会跟着发生变化
-                        return projectPath + "/src/main/resources/mapper/" +
-                                moduleName + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
-                    }
-                });
-                setFileOutConfigList(fileOutConfigList);
-            }
-        };
+    private static InjectionConfig getInjectionConfig(final PackageConfig packageConfig) {
+        return new MyInjectionConfig(packageConfig);
     }
 
 

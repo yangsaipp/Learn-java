@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.miaoying.generator.modulardb.personal.model">
+	
+	<generateOperate class="com.miaoying.generator.modulardb.personal.model.UserVO" filter="insert,update,read,delete"></generateOperate>
+
+	<select id="queryUserVOList" parameterType="java.util.List"
+		resultType="com.miaoying.generator.modulardb.personal.model.UserVO">
+		SELECT *
+		FROM top_user
+		WHERE user_id in
+		<foreach collection="list" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</select>
+	
+	<select id="queryUserVOListCount" parameterType="com.miaoying.generator.modulardb.personal.model.UserDTO"
+		resultType="int">
+		SELECT 
+		count(1)
+		WHERE 1=1
+		<if test="userId !=null and userId !=''">
+		     and TU.user_id = #{userId}
+		 </if>
+		<if test="orgId !=null and orgId !=''">
+		     and TU.org_id = #{orgId}
+		 </if>
+		<if test="employeeId !=null and employeeId !=''">
+		     and TU.employee_id = #{employeeId}
+		 </if>
+		<if test="state !=null and state !=''">
+		     and TU.state = #{state}
+		 </if>
+		<if test="userType !=null and userType !=''">
+		     and TU.user_type = #{userType}
+		 </if>
+		<if test="creatorId !=null and creatorId !=''">
+		     and TU.creator_id = #{creatorId}
+		 </if>
+		<if test="createTime !=null and createTime !=''">
+		     and TU.create_time = #{createTime}
+		 </if>
+		<if test="modifierId !=null and modifierId !=''">
+		     and TU.modifier_id = #{modifierId}
+		 </if>
+		<if test="updateTime !=null and updateTime !=''">
+		     and TU.update_time = #{updateTime}
+		 </if>
+	</select>
+
+	<select id="queryUserVOListByPage" parameterType="com.miaoying.generator.modulardb.personal.model.UserDTO"
+		resultType="com.miaoying.generator.modulardb.personal.model.UserDTO">
+		SELECT 
+　　		TU.user_id as userId,
+　　		TU.org_id as orgId,
+　　		TU.employee_id as employeeId,
+　　		TU.state as state,
+　　		TU.user_type as userType,
+　　		TU.creator_id as creatorId,
+　　		TU.create_time as createTime,
+　　		TU.modifier_id as modifierId,
+　　		TU.update_time as updateTime
+		FROM top_user TU
+		WHERE 1=1
+		<if test="userId !=null and userId !=''">
+		     and TU.user_id = #{userId}
+		</if>
+		<if test="orgId !=null and orgId !=''">
+		     and TU.org_id = #{orgId}
+		</if>
+		<if test="employeeId !=null and employeeId !=''">
+		     and TU.employee_id = #{employeeId}
+		</if>
+		<if test="state !=null and state !=''">
+		     and TU.state = #{state}
+		</if>
+		<if test="userType !=null and userType !=''">
+		     and TU.user_type = #{userType}
+		</if>
+		<if test="creatorId !=null and creatorId !=''">
+		     and TU.creator_id = #{creatorId}
+		</if>
+		<if test="createTime !=null and createTime !=''">
+		     and TU.create_time = #{createTime}
+		</if>
+		<if test="modifierId !=null and modifierId !=''">
+		     and TU.modifier_id = #{modifierId}
+		</if>
+		<if test="updateTime !=null and updateTime !=''">
+		     and TU.update_time = #{updateTime}
+		</if>
+	</select>
+
+	<delete id="deleteUserVO" parameterType="java.util.List">
+		DELETE FROM top_user TU WHERE user_id IN
+		<foreach collection="list" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+</mapper>

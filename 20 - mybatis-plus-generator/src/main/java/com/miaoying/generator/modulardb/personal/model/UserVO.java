@@ -1,4 +1,4 @@
-package com.miaoying.generator.modulardb.personal.entity;
+package com.miaoying.generator.modulardb.personal.model;
 
 import javax.persistence.*;
 import java.util.*;
@@ -6,7 +6,7 @@ import com.comtop.bizp.dart.framework.orm.model.CoreVO;
 
 /**
  * @auther CodeGenerator
- * @create 2021-05-23 10:54:26
+ * @create 2021-05-23 13:09:31
  * @describe 人员和组织的关联对象表实体类
  */
  
@@ -78,87 +78,78 @@ public class UserVO extends CoreVO {
         return userId;
     }
 
-    public User setUserId(String userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
-        return this;
     }
 
     public String getOrgId() {
         return orgId;
     }
 
-    public User setOrgId(String orgId) {
+    public void setOrgId(String orgId) {
         this.orgId = orgId;
-        return this;
     }
 
     public String getEmployeeId() {
         return employeeId;
     }
 
-    public User setEmployeeId(String employeeId) {
+    public void setEmployeeId(String employeeId) {
         this.employeeId = employeeId;
-        return this;
     }
 
     public Integer getState() {
         return state;
     }
 
-    public User setState(Integer state) {
+    public void setState(Integer state) {
         this.state = state;
-        return this;
     }
 
     public Integer getUserType() {
         return userType;
     }
 
-    public User setUserType(Integer userType) {
+    public void setUserType(Integer userType) {
         this.userType = userType;
-        return this;
     }
 
     public String getCreatorId() {
         return creatorId;
     }
 
-    public User setCreatorId(String creatorId) {
+    public void setCreatorId(String creatorId) {
         this.creatorId = creatorId;
-        return this;
     }
 
     public Date getCreateTime() {
         return createTime;
     }
 
-    public User setCreateTime(Date createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
-        return this;
     }
 
     public String getModifierId() {
         return modifierId;
     }
 
-    public User setModifierId(String modifierId) {
+    public void setModifierId(String modifierId) {
         this.modifierId = modifierId;
-        return this;
     }
 
     public Date getUpdateTime() {
         return updateTime;
     }
 
-    public User setUpdateTime(Date updateTime) {
+    public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
-        return this;
     }
 
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserVO{" +
         "userId=" + userId +
         ", orgId=" + orgId +
         ", employeeId=" + employeeId +

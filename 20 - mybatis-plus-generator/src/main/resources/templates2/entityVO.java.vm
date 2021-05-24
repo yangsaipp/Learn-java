@@ -1,4 +1,4 @@
-package ${package.Entity};
+package ${cfg.voPackage};
 
 import javax.persistence.*;
 import java.util.*;
@@ -12,7 +12,7 @@ import com.comtop.bizp.dart.framework.orm.model.CoreVO;
  
 @Entity
 @Table(name = "${table.name}")
-public class ${entity}VO extends CoreVO {
+public class ${cfg.voName} extends CoreVO {
 
     private static final long serialVersionUID = 1L;
 ## ----------  BEGIN 字段循环遍历  ----------
@@ -47,22 +47,15 @@ public class ${entity}VO extends CoreVO {
         return ${field.propertyName};
     }
 
-#if(${entityBuilderModel})
-    public ${entity} set${field.capitalName}(${field.propertyType} ${field.propertyName}) {
-#else
     public void set${field.capitalName}(${field.propertyType} ${field.propertyName}) {
-#end
         this.${field.propertyName} = ${field.propertyName};
-#if(${entityBuilderModel})
-        return this;
-#end
     }
 #end
 
 
     @Override
     public String toString() {
-        return "${entity}{" +
+        return "${cfg.voName}{" +
 #foreach($field in ${table.fields})
 #if($!{foreach.index}==0)
         "${field.propertyName}=" + ${field.propertyName} +

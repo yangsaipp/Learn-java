@@ -1,8 +1,7 @@
-package ${package.Entity};
+package ${cfg.voPackage};
 
-import javax.persistence.*;
 import java.util.*;
-import com.comtop.bizp.dart.framework.orm.model.CoreVO;
+import com.comtop.bizp.dart.framework.orm.model.CoreDTO;
 
 /**
  * @auther ${author}
@@ -10,27 +9,16 @@ import com.comtop.bizp.dart.framework.orm.model.CoreVO;
  * @describe $!{table.comment}实体类
  */
  
-@Entity
-@Table(name = "${table.name}")
-public class ${entity}VO extends CoreVO {
+public class ${cfg.dtoName} extends CoreDTO {
 
     private static final long serialVersionUID = 1L;
 ## ----------  BEGIN 字段循环遍历  ----------
 #foreach($field in ${table.fields})
 
-#if(${field.keyFlag})
-#set($keyPropertyName=${field.propertyName})
-#end
 ## 字段注释
     /**
      * ${field.comment}
      */
-#if(${field.keyFlag})
-## 主键
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-#end
-    @Column(name = "${field.name}")
     private ${field.propertyType} ${field.propertyName};
 #end
 ## ----------  END 字段循环遍历  ----------
@@ -47,22 +35,15 @@ public class ${entity}VO extends CoreVO {
         return ${field.propertyName};
     }
 
-#if(${entityBuilderModel})
-    public ${entity} set${field.capitalName}(${field.propertyType} ${field.propertyName}) {
-#else
     public void set${field.capitalName}(${field.propertyType} ${field.propertyName}) {
-#end
         this.${field.propertyName} = ${field.propertyName};
-#if(${entityBuilderModel})
-        return this;
-#end
     }
 #end
 
 
     @Override
     public String toString() {
-        return "${entity}{" +
+        return "${cfg.dtoName}{" +
 #foreach($field in ${table.fields})
 #if($!{foreach.index}==0)
         "${field.propertyName}=" + ${field.propertyName} +

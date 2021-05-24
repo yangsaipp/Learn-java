@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="${cfg.namespace}">
+	
+	<generateOperate class="${cfg.voClassName}" filter="insert,update,read,delete"></generateOperate>
+
+	<select id="query${cfg.voName}List" parameterType="java.util.List"
+		resultType="${cfg.voClassName}">
+		SELECT *
+		FROM ${table.name}
+		WHERE ${cfg.keyField.name} in
+		<foreach collection="list" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</select>
+	
+	<select id="query${cfg.voName}ListCount" parameterType="${cfg.dtoClassName}"
+		resultType="int">
+		SELECT count(1)
+		WHERE 1=1
+		#foreach($field in ${table.fields})
+		<if test="${field.propertyName} !=null and ${field.propertyName} !=''">
+		     and TU.${field.name} = #{${field.propertyName}}
+		 </if>
+		#end
+	</select>
+
+	<select id="query${cfg.voName}ListByPage" parameterType="${cfg.dtoClassName}"
+		resultType="${cfg.dtoClassName}">
+		SELECT 
+		#foreach($field in ${table.fields})
+		#if($foreach.hasNext) 
+　　		TU.${field.name} as ${field.propertyName},
+		#else 
+　　		TU.${field.name} as ${field.propertyName}
+		#end
+		#end
+		FROM ${table.name} TU
+		WHERE 1=1
+		#foreach($field in ${table.fields})
+		<if test="${field.propertyName} !=null and ${field.propertyName} !=''">
+		     and TU.${field.name} = #{${field.propertyName}}
+		</if>
+		#end
+	</select>
+
+	<delete id="delete${cfg.voName}" parameterType="java.util.List">
+		DELETE FROM ${table.name} TU WHERE ${cfg.keyField.name} IN
+		<foreach collection="list" item="id" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+</mapper>
