@@ -1,3 +1,4 @@
+package abc.my;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -43,20 +44,22 @@ public class MyInjectionConfig extends InjectionConfig {
 		String strVoPackage = String.format("%s.model", packageConfig.getParent()); 
 		map.put("voPackage", strVoPackage);
 		// xxxVO.java
-		fileOutConfigList.add(new FileOutConfig("/templates2/entityVO.java.vm") {
+		fileOutConfigList.add(new FileOutConfig("/mytemplates/entityVO.java.vm") {
 			@Override
 			public String outputFile(TableInfo tableInfo) {
+				TableField keyField = tableInfo.getFields().stream().filter(f-> f.isKeyFlag()).findFirst().get();
 				String voName = String.format("%sVO", tableInfo.getEntityName());
 				String voClassName = String.format("%s.%s", strVoPackage,voName);
 				map.put("voName", voName);
 				map.put("voClassName", voClassName);
+				map.put("voKeyField", keyField);
 				// 自定义输出文件名，如果entity设置了前后缀，此次注意xml的名称也会跟着发生变化
 				return projectPath + "/src/main/java/" + voClassName.replace(".", "/") + StringPool.DOT_JAVA;
 			}
 		});
 
 		// xxxDTO.java
-		fileOutConfigList.add(new FileOutConfig("/templates2/entityDTO.java.vm") {
+		fileOutConfigList.add(new FileOutConfig("/mytemplates/entityDTO.java.vm") {
 			@Override
 			public String outputFile(TableInfo tableInfo) {
 				String dtoName = String.format("%sDTO", tableInfo.getEntityName());
@@ -70,7 +73,7 @@ public class MyInjectionConfig extends InjectionConfig {
         
         // xxxSQL.xml
 		map.put("namespace", strVoPackage);
-		fileOutConfigList.add(new FileOutConfig("/templates2/entitySQL.xml.vm") {
+		fileOutConfigList.add(new FileOutConfig("/mytemplates/entitySQL.xml.vm") {
 			@Override
 			public String outputFile(TableInfo tableInfo) {
 				TableField keyField = getKeyField(tableInfo);
@@ -93,13 +96,13 @@ public class MyInjectionConfig extends InjectionConfig {
 		String strAppServicePackage = String.format("%s.appservice", packageConfig.getParent()); 
 		map.put("appServicePackage", strAppServicePackage);
 		// xxxVO.java
-		fileOutConfigList.add(new FileOutConfig("/templates2/appservice.java.vm") {
+		fileOutConfigList.add(new FileOutConfig("/mytemplates/appservice.java.vm") {
 			@Override
 			public String outputFile(TableInfo tableInfo) {
 				String appserviceName = String.format("%sAppService", tableInfo.getEntityName());
 				String appServiceClassName = String.format("%s.%s", strAppServicePackage,appserviceName);
 				map.put("appserviceName", appserviceName);
-				map.put("appServiceClassName", appServiceClassName);
+				map.put("appserviceClassName", appServiceClassName);
 				// 自定义输出文件名，如果entity设置了前后缀，此次注意xml的名称也会跟着发生变化
 				return projectPath + "/src/main/java/" + appServiceClassName.replace(".", "/") + StringPool.DOT_JAVA;
 			}
@@ -110,13 +113,13 @@ public class MyInjectionConfig extends InjectionConfig {
 		String strFacadePackage = String.format("%s.facade", packageConfig.getParent()); 
 		map.put("facadePackage", strFacadePackage);
 		// xxxVO.java
-		fileOutConfigList.add(new FileOutConfig("/templates2/facade.java.vm") {
+		fileOutConfigList.add(new FileOutConfig("/mytemplates/facade.java.vm") {
 			@Override
 			public String outputFile(TableInfo tableInfo) {
 				String facadeName = String.format("%sFacade", tableInfo.getEntityName());
 				String facadeClassName = String.format("%s.%s", strFacadePackage,facadeName);
-				map.put("FacadeName", facadeName);
-				map.put("FacadeClassName", facadeClassName);
+				map.put("facadeName", facadeName);
+				map.put("facadeClassName", facadeClassName);
 				// 自定义输出文件名，如果entity设置了前后缀，此次注意xml的名称也会跟着发生变化
 				return projectPath + "/src/main/java/" + facadeClassName.replace(".", "/") + StringPool.DOT_JAVA;
 			}
@@ -126,7 +129,7 @@ public class MyInjectionConfig extends InjectionConfig {
 		String strControllerPackage = String.format("%s.controller", packageConfig.getParent()); 
 		map.put("controllerPackage", strControllerPackage);
 		// xxxVO.java
-		fileOutConfigList.add(new FileOutConfig("/templates2/controller.java.vm") {
+		fileOutConfigList.add(new FileOutConfig("/mytemplates/controller.java.vm") {
 			@Override
 			public String outputFile(TableInfo tableInfo) {
 				String controllerName = String.format("%sController", tableInfo.getEntityName());

@@ -6,7 +6,7 @@ import com.comtop.bizp.dart.framework.orm.model.CoreVO;
 
 /**
  * @auther CodeGenerator
- * @create 2021-05-23 13:09:31
+ * @create 2021-05-30 23:59:04
  * @describe 人员和组织的关联对象表实体类
  */
  

@@ -15,6 +15,9 @@ import com.baomidou.mybatisplus.generator.config.rules.DateType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.sun.javafx.PlatformUtil;
 
+import abc.my.MyAutoGenerator;
+import abc.my.MyInjectionConfig;
+
 public class CodeGenerator {
     /**
      * 代码生成位置
@@ -41,7 +44,7 @@ public class CodeGenerator {
      */
     private static final boolean REST_CONTROLLER_STYLE = true;
 
-    public static final String JDBC_MYSQL_URL = "jdbc:mysql://192.168.1.100:3306/sz_ga?" +
+    public static final String JDBC_MYSQL_URL = "jdbc:mysql://192.168.1.101:3306/sz_ga?" +
             "serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8";
 
     public static final String JDBC_DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
@@ -127,13 +130,13 @@ public class CodeGenerator {
     }
 
     private static TemplateConfig getTemplateConfig() {
-        return new TemplateConfig()
-                .setController("/templates-generator/controller.java.vm")
+        return new TemplateConfig();
+//                .setController("/templates-generator/controller.java.vm")
 //                .setService("/templates-generator/service.java.vm")
 //                .setServiceImpl("/templates-generator/serviceImpl.java.vm")
-                .setEntity("/templates-generator/entity.java.vm")
+//                .setEntity("/templates-generator/entity.java.vm")
                 //.setMapper("/templates-generator/mapper.java.vm")
-                .setXml("/templates-generator/mapper.xml.vm");
+//                .setXml("/templates-generator/mapper.xml.vm");
     }
 
     private static String scanner(String tip) {

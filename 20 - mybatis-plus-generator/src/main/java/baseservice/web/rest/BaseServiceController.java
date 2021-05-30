@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.comtop.tcm.tenantPlatform.bpmp.baseservice.facade.BaseServiceFacade;
 import com.comtop.tcm.tenantPlatform.bpmp.baseservice.model.BaseServiceInfoDTO;
 import com.comtop.tcm.tenantPlatform.bpmp.baseservice.model.BaseServiceInfoVO;
-import com.comtop.tcm.tenantPlatform.bpmp.common.ResponseMsgBuilder;
-import com.comtop.tcm.tenantPlatform.bpmp.common.ResponseMsgDTO;
 
 /**
  * BaseService相关接口
@@ -43,47 +41,30 @@ public class BaseServiceController {
 	
 	/**
 	 * 根据id查询信息
-	 * @param id tenantInfo
-	 * @return AuthResultDTO objAuthResultDTO
+	 * @param id id
+	 * @return objBaseServiceInfoVO
 	 */
 	@GetMapping("/getBaseService")
-	public ResponseMsgDTO getBaseService(@RequestParam String id){
-		try {
-			BaseServiceInfoVO objBaseServiceInfoVO = baseServiceFacade.get(id);
-			return ResponseMsgBuilder.success(objBaseServiceInfoVO);
-		} catch (Exception e) {
-			return ResponseMsgBuilder.fail(e);
-		}
+	public BaseServiceInfoVO getBaseService(@RequestParam String id){
+		return baseServiceFacade.get(id);
 	}
 	
 	/**
 	 * 新增
 	 * @param baseServiceInfoDTO baseServiceInfoDTO
-	 * @return AuthResultDTO objAuthResultDTO
 	 */
 	@PostMapping("/addBaseService")
-	public ResponseMsgDTO addBaseService(@RequestBody BaseServiceInfoDTO baseServiceInfoDTO){
-		try {
-			baseServiceFacade.add(baseServiceInfoDTO);
-			return ResponseMsgBuilder.success(baseServiceInfoDTO);
-		} catch (Exception e) {
-			return ResponseMsgBuilder.fail(e);
-		}
+	public void addBaseService(@RequestBody BaseServiceInfoDTO baseServiceInfoDTO){
+		baseServiceFacade.add(baseServiceInfoDTO);
 	}
 
 	/**
 	 * 更新
 	 * @param baseServiceInfoDTO baseServiceInfoDTO
-	 * @return AuthResultDTO objAuthResultDTO
 	 */
 	@PostMapping("/updateBaseService")
-	public ResponseMsgDTO updateBaseService(@RequestBody BaseServiceInfoDTO baseServiceInfoDTO){
-		try {
-			baseServiceFacade.update(baseServiceInfoDTO);
-			return ResponseMsgBuilder.success(baseServiceInfoDTO);
-		} catch (Exception e) {
-			return ResponseMsgBuilder.fail(e);
-		}
+	public void updateBaseService(@RequestBody BaseServiceInfoDTO baseServiceInfoDTO){
+		baseServiceFacade.update(baseServiceInfoDTO);
 	}
 	
 	/**
@@ -92,13 +73,8 @@ public class BaseServiceController {
 	 * @return ResponseMsgDTO
 	 */
 	@PostMapping("/deleteBaseService")
-	public ResponseMsgDTO deleteTenantWithService(@RequestBody List<String> ids){
-		try {
-			List<BaseServiceInfoVO> lstBaseServiceInfoVO = baseServiceFacade.delete(ids);
-			return ResponseMsgBuilder.success(lstBaseServiceInfoVO);
-		} catch (Exception e) {
-			return ResponseMsgBuilder.fail(e);
-		}
+	public void deleteTenantWithService(@RequestBody List<String> ids){
+		baseServiceFacade.delete(ids);
 	}
 	
 }

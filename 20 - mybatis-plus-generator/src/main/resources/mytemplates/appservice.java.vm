@@ -1,0 +1,74 @@
+package ${cfg.appServicePackage};
+
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.comtop.bizp.dart.framework.orm.dao.CoreDAO;
+import ${cfg.voClassName};
+
+/**
+ * @auther ${author}
+ * @create ${cfg.dateTime}
+ * @describe $!{table.comment}appService
+ */
+@Service
+public class ${cfg.appserviceName} {
+
+	/**
+	 * 注入DAO
+	 */
+	@Autowired
+	private CoreDAO<${cfg.voName}> DAO;
+	
+	/**
+	 * 根据id查询记录
+	 * @param id id
+	 * @return id对应的vo
+	 */
+	public ${cfg.voName} get(String id) {
+		${cfg.voName} objParamVO = new ${cfg.voName}();
+		objParamVO.set${cfg.voKeyField.capitalName}(id);
+		return DAO.load(objParamVO);
+	}
+
+	/**
+	 * 新增
+	 * @param obj${cfg.voName} obj${cfg.voName}
+	 * @return id
+	 */
+	public String insert(${cfg.voName} obj${cfg.voName}) {
+		return (String)DAO.insert(obj${cfg.voName});
+	}
+
+	/**
+	 * 新增
+	 * @param obj${cfg.voName} obj${cfg.voName}
+	 * @return true=成功 false=失败
+	 */
+	public boolean update(${cfg.voName} obj${cfg.voName}) {
+		return DAO.update(obj${cfg.voName});
+		
+	}
+
+	/**
+	 * 删除
+	 * @param ids ids
+	 * @return 删除记录数
+	 */
+	public int delete(List<String> ids) {
+		return DAO.delete("${cfg.namespace}.delete${cfg.voName}", ids);
+	}
+
+	/**
+	 * 查询集合
+	 * @param ids ids
+	 * @return 结果集合
+	 */
+	public List<${cfg.voName}> queryList(List<String> ids) {
+		return DAO.queryList("${cfg.namespace}.query${cfg.voName}List", ids);
+	}
+
+}

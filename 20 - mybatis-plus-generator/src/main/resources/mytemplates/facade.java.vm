@@ -1,0 +1,67 @@
+package ${cfg.facadePackage};
+
+
+import java.util.List;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import ${cfg.appserviceClassName};
+import ${cfg.dtoClassName};
+import ${cfg.voClassName};
+
+/**
+ * @auther ${author}
+ * @create ${cfg.dateTime}
+ * @describe $!{table.comment}Facade
+ */
+@Service
+public class ${cfg.facadeName} {
+
+	/** */
+	@Autowired
+	private ${cfg.appserviceName} obj${cfg.appserviceName};
+	
+	/**
+	 * 根据id查询记录
+	 * @param id id
+	 * @return id对应的vo
+	 */
+	public ${cfg.voName} get(String id) {
+		return obj${cfg.appserviceName}.get(id);
+	}
+
+	/**
+	 * 新增
+	 * @param obj${cfg.dtoName} obj${cfg.dtoName}
+	 */
+	public void add(${cfg.dtoName} obj${cfg.dtoName}) {
+		${cfg.voName} obj${cfg.voName} = new ${cfg.voName}();
+		BeanUtils.copyProperties(obj${cfg.dtoName}, obj${cfg.voName});
+		String id = obj${cfg.appserviceName}.insert(obj${cfg.voName});
+		obj${cfg.dtoName}.set${cfg.voKeyField.capitalName}(id);
+	}
+
+	/**
+	 * 更新
+	 * @param obj${cfg.dtoName} obj${cfg.dtoName}
+	 */
+	public void update(${cfg.dtoName} obj${cfg.dtoName}) {
+		${cfg.voName} obj${cfg.voName} = new ${cfg.voName}();
+		BeanUtils.copyProperties(obj${cfg.dtoName}, obj${cfg.voName});
+		obj${cfg.appserviceName}.update(obj${cfg.voName});
+	}
+
+	/**
+	 * 删除
+	 * @param ids 注解id
+	 * @return 删除的记录
+	 */
+	public List<${cfg.voName}> delete(List<String> ids) {
+		List<${cfg.voName}> lst${cfg.voName} = obj${cfg.appserviceName}.queryList(ids);
+		obj${cfg.appserviceName}.delete(ids);
+		return lst${cfg.voName};
+	}
+
+}
