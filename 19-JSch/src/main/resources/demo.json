@@ -1,0 +1,25 @@
+{
+	"tasks":[
+		{
+			"host":"192.168.1.100",
+			"commandDescribes":[
+				{
+					"type":"download",
+					"from":"/root/jadp-all/log/disconf.log",
+					"to":"e:/log/jadp/a.log"
+				},
+				{
+					"type":"download",
+					"from":"/root/jadp-all/log/disconf.log",
+					"to":"e:/log/bpmp/"
+				},
+				{
+					"type":"download",
+					"from":"/root/jadp-all/log/disconf.log",
+					"to":"e:/log/bpmp22/"
+				},
+				"ls /root"
+			]
+		}
+	]
+}
